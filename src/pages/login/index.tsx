@@ -4,24 +4,32 @@ import { Link } from "react-router-dom";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../services/firebaseConnection";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
+const schema = z.object({
+    email: z.string().email("Insira um email válido").nonempty("O campo email é obrigatório"),
+    password: z.string().nonempty("O campo senha é obrigatório")
+})
+
+type FormData = z.infer<typeof schema>;
 
 export function Login() {
     const navigate = useNavigate();
-
-    const schema = z.object({
-        email: z.string().email("Insira um email válido").nonempty("O campo email é obrigatório"),
-        password: z.string().nonempty("O campo senha é obrigatório")
-    })
-
-    type FormData = z.infer<typeof schema>;
-
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: zodResolver(schema),
         mode: "onChange"
     })
+
+    useEffect(() => {
+        async function handleLogout() {
+            await signOut(auth);
+        }
+
+        handleLogout();
+    }, [])
 
     function onSubmit(data: FormData) {
         signInWithEmailAndPassword(auth, data.email, data.password)
