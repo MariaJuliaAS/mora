@@ -1,5 +1,11 @@
+import { Container } from "../../components/container";
+
 export function Login() {
     return (
-        <h1>PAGINA DE LOGIN</h1>
+        <Container>
+            <div>
+
+            </div>
+        </Container>
     )
 }
