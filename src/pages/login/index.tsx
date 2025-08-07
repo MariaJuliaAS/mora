@@ -27,7 +27,8 @@ export function Login() {
         signInWithEmailAndPassword(auth, data.email, data.password)
             .then((user) => {
                 console.log(user)
-                navigate('/home', { replace: true })
+                alert("Login realizado com sucesso!")
+                navigate('/', { replace: true })
             }).catch((error) => {
                 console.error("Erro ao logar: ", error)
                 alert("Erro ao logar, verifique suas credenciais.")

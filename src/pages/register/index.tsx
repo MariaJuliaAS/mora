@@ -4,8 +4,12 @@ import { Input } from "../../components/input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { auth } from "../../services/firebaseConnection";
+import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 export function Register() {
+    const navigate = useNavigate();
 
     const schema = z.object({
         name: z.string().nonempty("O campo nome é obrigatório"),
@@ -21,7 +25,17 @@ export function Register() {
     })
 
     function onSubmit(data: FormData) {
-        console.log(data)
+        createUserWithEmailAndPassword(auth, data.email, data.password)
+            .then(async (user) => {
+                await updateProfile(user.user, {
+                    displayName: data.name
+                })
+                alert("Usuário cadastrado com sucesso!")
+                navigate("/", { replace: true })
+            }).catch((error) => {
+                console.error("Erro ao cadastrar: ", error)
+                alert("Erro ao cadastrar, verifique suas informações.")
+            })
     }
 
     return (
