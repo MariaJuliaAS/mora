@@ -18,7 +18,7 @@ export function Home() {
                     <input
                         type="text"
                         placeholder="Procure por tipo ou cidades..."
-                        className="border border-zinc-400 px-2 h-9 rounded-lg w-full"
+                        className="border border-zinc-300 px-2 h-9 rounded-lg w-full"
                     />
                     <button className="rounded-lg bg-orange-600 flex items-center px-12 h-9 gap-2 text-white font-medium">
                         <IoSearchOutline size={18} className="text-white" />
