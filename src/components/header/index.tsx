@@ -9,7 +9,7 @@ export function Header() {
     const { signed, loadingAuth } = useContext(AuthContext);
 
     return (
-        <div className="bg-white flex items-center justify-center h-16 max-w-full">
+        <div className="bg-white flex items-center justify-center h-16 max-w-full border-2 border-b-orange-600 shadow-md">
             <header className="flex justify-between items-center w-full max-w-7xl mx-auto px-4">
                 <Link to='/'>
                     <div className="flex items-center gap-2">
