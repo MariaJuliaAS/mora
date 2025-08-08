@@ -28,7 +28,7 @@ export function Home() {
             </section>
 
             <Container>
-                <section className="flex items-center flex-col justify-center my-8 w-full">
+                <div className="flex items-center flex-col justify-center my-8 w-full">
                     <h1 className="font-bold sm:text-2xl text-xl text-center my-6">Imóveis para vender e alugar em todo o Brasil.</h1>
                     <main className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
                         <section className="rounded-2xl border border-zinc-200 mb-4">
@@ -78,7 +78,7 @@ export function Home() {
                             </div>
                         </section>
                     </main>
-                </section>
+                </div>
             </Container>
         </div>
     )
